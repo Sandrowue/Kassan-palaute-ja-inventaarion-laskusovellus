@@ -44,7 +44,11 @@ function checkCashRegister(price, cash, cid) {
             while (tokensWithNumbers[i][3] > 0 && change >= tokensWithNumbers[i][0]) {
                 change -= tokensWithNumbers[i][0];
                 tokensWithNumbers[i][3]--;
-                tokensWithNumbers[i][2] -= tokensWithNumbers[i][0];
+                sumNumber = tokensWithNumbers[i][2] 
+                substractor = tokensWithNumbers[i][0];
+                sumNumber -= substractor
+                tokensWithNumbers[i][2] = Number(sumNumber.toFixed(2))
+                console.log(tokensWithNumbers[i][2])
                 change = change.toFixed(2);
                 cashBack.push(tokensWithNumbers[i])
             }
@@ -110,4 +114,4 @@ function checkCashRegister(price, cash, cid) {
     }
 }
 console.log(checkCashRegister(19.5, 40, [["FIVE CENT", 0.20], ["TEN CENT", 0.10], ["TWENTY CENT", 0.20], ["FIFTY CENT", 0],
- ["ONE", 4], ["TWO", 2], ["FIVE", 5], ["TEN", 10], ["TWENTY", 0], ["FIFTY", 0] ,["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
+ ["ONE", 3], ["TWO", 4], ["FIVE", 5], ["TEN", 10], ["TWENTY", 0], ["FIFTY", 0] ,["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
