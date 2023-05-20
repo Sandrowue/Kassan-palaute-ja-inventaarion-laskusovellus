@@ -6,21 +6,30 @@ function checkCashRegister(price, cash, cid) {
     var change = getChange(price, cash).toFixed(2)
     
     function tokensInNumbers(token) {
-        token[0].unshift(0.05);
-        token[1].unshift(0.10);
-        token[2].unshift(0.20);
-        token[3].unshift(0.50);
-        token[4].unshift(1);
-        token[5].unshift(2);
-        token[6].unshift(5);
-        token[7].unshift(10);
-        token[8].unshift(20);
-        token[9].unshift(50);
-        token[10].unshift(100);
-        token[11].unshift(200);
-        token[12].unshift(500);
-        return token
+    var listOfTokens = {
+        'FIVE HUNDRED': 500,
+        'TWO HUNDRED': 200,
+        'HUNDRED': 100,
+        'FIFTY': 50,
+        'TWENTY': 20,
+        'TEN': 10,
+        'FIVE': 5,
+        'TWO': 2,
+        'ONE': 1,
+        'FIFTY CENT': 0.50,
+        'TWENTY CENT': 0.20,
+        'TEN CENT': 0.10,
+        'FIVE CENT': 0.05
     }
+
+    for (let i = 0; i < token.length; i++) {
+        if (token[i][0] in listOfTokens) {
+            token[i].unshift(listOfTokens[token[i][0]])
+        }
+    }
+    return token
+    }
+
     let tokensWithNumbers = tokensInNumbers(cid)
     
     let totalCashAmount = 0;
@@ -29,7 +38,7 @@ function checkCashRegister(price, cash, cid) {
         totalCashAmount += tokensWithNumbers[i][2];
     }
     totalCashAmount = totalCashAmount.toFixed(2)
-    
+    console.log(tokensWithNumbers)
     var cashBack = [];
     if (change > totalCashAmount) {
         return { status: "INSUFFICIENT_FUNDS", change: [] };
@@ -48,7 +57,6 @@ function checkCashRegister(price, cash, cid) {
                 substractor = tokensWithNumbers[i][0];
                 sumNumber -= substractor
                 tokensWithNumbers[i][2] = Number(sumNumber.toFixed(2))
-                console.log(tokensWithNumbers[i][2])
                 change = change.toFixed(2);
                 cashBack.push(tokensWithNumbers[i])
             }
@@ -113,5 +121,5 @@ function checkCashRegister(price, cash, cid) {
         return { status: "OPEN", change: receiptSubArr, cid }
     }
 }
-console.log(checkCashRegister(19.5, 40, [["FIVE CENT", 0.20], ["TEN CENT", 0.10], ["TWENTY CENT", 0.20], ["FIFTY CENT", 0],
- ["ONE", 3], ["TWO", 4], ["FIVE", 5], ["TEN", 10], ["TWENTY", 0], ["FIFTY", 0] ,["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
+console.log(checkCashRegister(19.5, 40, [["FIVE CENT", 0.20], ["TEN CENT", 0.10], ["TWENTY CENT", 0.20], ["FIFTY CENT", 3], 
+ ["ONE", 3], ["TWO", 4], ["FIVE", 0], ["TEN", 10], ["TWENTY", 0], ["FIFTY", 50], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
