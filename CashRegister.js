@@ -30,25 +30,32 @@ function checkCashRegister(price, cash, cid) {
     return token
     }
 
-    let tokensWithNumbers = tokensInNumbers(cid)
+    var tokensWithNumbers = tokensInNumbers(cid)
     
     let totalCashAmount = 0;
+    
     for (let i = 0; i < tokensWithNumbers.length; i++) {
         tokensWithNumbers[i].push(Math.round(tokensWithNumbers[i][2] / tokensWithNumbers[i][0]))
         totalCashAmount += tokensWithNumbers[i][2];
     }
     totalCashAmount = totalCashAmount.toFixed(2)
-    console.log(tokensWithNumbers)
+    
     var cashBack = [];
-    if (change > totalCashAmount) {
+
+    console.log(change)
+    console.log(totalCashAmount)
+
+    if (change < totalCashAmount) {
         return { status: "INSUFFICIENT_FUNDS", change: [] };
-    } else if (change === totalCashAmount) {
+   }  
+    else if (change === totalCashAmount) {
         for (let i = 0; i < tokensWithNumbers.length; i++) {
             tokensWithNumbers[i].shift();
             tokensWithNumbers[i].pop();
         }
         return { status: "CLOSED", change: tokensWithNumbers }
-    } else {
+    } 
+    else {
         for (let i = tokensWithNumbers.length - 1; i >= 0; i--) {
             while (tokensWithNumbers[i][3] > 0 && change >= tokensWithNumbers[i][0]) {
                 change -= tokensWithNumbers[i][0];
@@ -61,7 +68,7 @@ function checkCashRegister(price, cash, cid) {
                 cashBack.push(tokensWithNumbers[i])
             }
         }
-
+    }
 
         if (change > 0) {
             return { status: "INSUFFICIENT_FUNDS", change: [] };
@@ -82,7 +89,7 @@ function checkCashRegister(price, cash, cid) {
             'TEN CENT': 0,
             'FIVE CENT': 0
         }
-
+        
         for (let i = 0; i < cashBack.length; i++) {
             if (cashBack[i][1] in appearanceOfTokens) {
                 appearanceOfTokens[cashBack[i][1]] += cashBack[i][0]
@@ -95,7 +102,7 @@ function checkCashRegister(price, cash, cid) {
                 receipt.push(arr[1]);
             }
         });
-
+        
         function getSubArrays(arr, subSize) {
             let result = [];
             for (let i = 0; i < arr.length; i += subSize) {
@@ -105,21 +112,31 @@ function checkCashRegister(price, cash, cid) {
             return result
         }
         let receiptSubArr = getSubArrays(receipt, 1);
-
+        
         for (let i = 0; i < receiptSubArr.length; i++) {
             if (receiptSubArr[i] in appearanceOfTokens) {
                 receiptSubArr[i].push(appearanceOfTokens[receiptSubArr[i]])
             }
         }
         
-        for (let i in tokensWithNumbers){ 
-            tokensWithNumbers[i].shift()
-            tokensWithNumbers[i].pop()
+        tokensInNumbers(receiptSubArr)
+        
+        for (let i = 0; i < receiptSubArr.length; i++) {
+            receiptSubArr[i].push('Amount of token: ')
+            receiptSubArr[i].push(Math.round(receiptSubArr[i][2] / receiptSubArr[i][0]))
+            receiptSubArr[i].shift()
         }
-        cid = tokensWithNumbers
+        
+        let newCid = tokensWithNumbers
 
-        return { status: "OPEN", change: receiptSubArr, cid }
+        for (let i in newCid){ 
+            newCid[i].shift()
+            newCid[i].pop()
+        }
+        cid = newCid
+
+        return { status: "OPEN", receiptSubArr, cid }
     }
-}
-console.log(checkCashRegister(19.5, 40, [["FIVE CENT", 0.20], ["TEN CENT", 0.10], ["TWENTY CENT", 0.20], ["FIFTY CENT", 3], 
- ["ONE", 3], ["TWO", 4], ["FIVE", 0], ["TEN", 10], ["TWENTY", 0], ["FIFTY", 50], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
+
+console.log(checkCashRegister(19.5, 50, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
+ ["ONE", 5], ["TWO", 6], ["FIVE", 5], ["TEN", 40], ["TWENTY", 20], ["FIFTY", 50], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
