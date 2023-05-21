@@ -70,7 +70,7 @@ function checkCashRegister(price, cash, cid) {
         if (change > 0) {
             return { status: "INSUFFICIENT_FUNDS", change: [] };
         }
-        console.log(cashBack)
+        
         var appearanceOfTokens = {
             'FIVE HUNDRED': 0,
             'TWO HUNDRED': 0,
@@ -132,8 +132,8 @@ function checkCashRegister(price, cash, cid) {
         }
         cid = newCid
 
-        return { status: "OPEN", receiptSubArr, cid }
+        return { status: "OPEN", change: receiptSubArr, cid }
     }
 
 console.log(checkCashRegister(19.5, 120, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
- ["ONE", 5], ["TWO", 6], ["FIVE", 5], ["TEN", 40], ["TWENTY", 20], ["FIFTY", 50], ["HUNDRED", 200], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
+ ["ONE", 5], ["TWO", 6], ["FIVE", 5], ["TEN", 80], ["TWENTY", 60], ["FIFTY", 0], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
