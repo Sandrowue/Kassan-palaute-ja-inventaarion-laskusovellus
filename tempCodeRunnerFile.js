@@ -1,1 +1,0 @@
-receiptSubArr[i].push('Amount of specific token: ')
