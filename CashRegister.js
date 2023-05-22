@@ -41,11 +41,11 @@ function checkCashRegister(price, cash, cid) {
     totalCashAmount = totalCashAmount.toFixed(2)
     
     var cashBack = [];
-
-    if (change > totalCashAmount) {
+    
+    /*if (change > totalCashAmount) {
         return { status: "INSUFFICIENT_FUNDS", change: [] };
    }  
-    else if (change === totalCashAmount) {
+    else */ if (change === totalCashAmount) {
         for (let i = 0; i < tokensWithNumbers.length; i++) {
             tokensWithNumbers[i].shift();
             tokensWithNumbers[i].pop();
@@ -135,5 +135,5 @@ function checkCashRegister(price, cash, cid) {
         return { status: "OPEN", change: receiptSubArr, cid }
     }
 
-console.log(checkCashRegister(19.5, 120, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
+console.log(checkCashRegister(63.75, 120, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
  ["ONE", 5], ["TWO", 6], ["FIVE", 5], ["TEN", 80], ["TWENTY", 60], ["FIFTY", 0], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]]))
