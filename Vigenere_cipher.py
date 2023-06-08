@@ -52,6 +52,7 @@ def vigenere_cipher_decrypter(str, keyword):
             
 print(vigenere_cipher_decrypter('D twk g ahnynrwm hpzp ghah kdknxie', 'Foetus Interruptus Nail'))
 
+
 def vigenere_cipher_encrypter(str, keyword):
     list_alphabet_uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
                                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -62,8 +63,7 @@ def vigenere_cipher_encrypter(str, keyword):
     answer_cipher = [] 
     keyword_length = len(keyword)
     keyword_index = 0
-    reference_offset = 13
-    
+        
     for i in str_to_char:
         if i not in list_alphabet_lowercase and i not in list_alphabet_uppercase:
             answer_cipher.append(i)
