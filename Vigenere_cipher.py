@@ -63,7 +63,7 @@ def vigenere_cipher_encrypter(str, keyword):
     answer_cipher = [] 
     keyword_length = len(keyword)
     keyword_index = 0
-        
+    
     for i in str_to_char:
         if i not in list_alphabet_lowercase and i not in list_alphabet_uppercase:
             answer_cipher.append(i)
@@ -76,33 +76,24 @@ def vigenere_cipher_encrypter(str, keyword):
                 offset = list_alphabet_lowercase.index(keyword_to_char[keyword_index])
             elif keyword_to_char[keyword_index] in list_alphabet_uppercase:
                 offset = list_alphabet_uppercase.index(keyword_to_char[keyword_index])
-           
+            
             if i in list_alphabet_uppercase:
-                offset_correction = offset
-                if list_alphabet_uppercase.index(i) >= offset_correction:
-                    add = list_alphabet_uppercase.index(i)
-                    answer_cipher.append(list_alphabet_uppercase[add - offset_correction])
-                elif list_alphabet_uppercase.index(i) < offset_correction:
-                    substract = list_alphabet_uppercase.index(i)
-                    answer_cipher.append(list_alphabet_uppercase[substract - offset])
+                add = list_alphabet_uppercase.index(i)
+                answer_cipher.append(list_alphabet_uppercase[add - offset])
                 if keyword_index < keyword_length - 1:
                     keyword_index += 1
                 else:
                     keyword_index = 0
-
-            if i in list_alphabet_lowercase:
-                offset_correction = offset
-                if list_alphabet_lowercase.index(i) >= offset_correction:
-                    add = list_alphabet_lowercase.index(i)
-                    answer_cipher.append(list_alphabet_lowercase[add - offset_correction])
-                elif list_alphabet_lowercase.index(i) < offset_correction:
-                    substract = list_alphabet_lowercase.index(i)
-                    answer_cipher.append(list_alphabet_lowercase[substract - offset])
+            
+            if i in list_alphabet_lowercase:                
+                add = list_alphabet_lowercase.index(i)
+                answer_cipher.append(list_alphabet_lowercase[add - offset])
                 if keyword_index < keyword_length - 1:
                     keyword_index += 1
                 else:
                     keyword_index = 0
     return ''.join(answer_cipher)
             
+
 
 print(vigenere_cipher_encrypter('I had a sparring with this program', 'Foetus Interruptus Nail'))
