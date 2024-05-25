@@ -198,13 +198,12 @@ function checkCashRegister(price, cash, cid) {
             receiptSubArr[i].shift()
         }
         
-        let newCid = inventory;
-
-        for (let i in newCid){ 
-            newCid[i].shift()
-            newCid[i].pop()
+        
+        for (let i in inventory){ 
+            inventory[i].shift()
+            inventory[i].pop()
         }
-        cid = newCid
+        
 
         return console.log({ status: "OPEN", change: receiptSubArr, cid })
         }
@@ -214,5 +213,5 @@ var account = showAccount(change, totalCashAmount, tokensWithAmountOfCoins);
 return account
 }
 
-checkCashRegister(107.20, 200, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
+checkCashRegister(122.35, 200, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
 ["ONE", 5], ["TWO", 6], ["FIVE", 5], ["TEN", 80], ["TWENTY", 60], ["FIFTY", 0], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]])
