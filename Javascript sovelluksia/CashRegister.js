@@ -47,17 +47,29 @@ function checkCashRegister(price, cash, cid) {
     // variable tokensWithNumber calls the tokensInNumbers function with the providen cid argument.
     var tokensWithNumbers = tokensInNumbers(cid)
     
-    
-    let totalCashAmount = 0;
-    
-    for (let i = 0; i < tokensWithNumbers.length; i++) {
-        tokensWithNumbers[i].push(Math.round(tokensWithNumbers[i][2] / tokensWithNumbers[i][0]))
-        totalCashAmount += tokensWithNumbers[i][2];
+    // function counts the total Sum of Cash in the desk
+    function cashDeskSum(inventory) {
+    let sum = 0;
+    for (let i = 0; i < inventory.length; i++) {
+        sum += inventory[i][2];
+        }
+        return sum
     }
-    totalCashAmount = totalCashAmount.toFixed(2)
-    console.log(totalCashAmount)
 
+    // variable totalCashAmount calls the cashDeskSum function with the tokensWithNumbers Variable
+    var totalCashAmount = cashDeskSum(tokensWithNumbers).toFixed(2)
     
+    // provided with the tokensWithNumvers Array the function adds to each tokens subArray the amount of coins at the end of this subArray.
+    function numberOfCoins(inventory) {
+        for (let i = 0; i < inventory.length; i++) {
+            inventory[i].push(Math.round(inventory[i][2] / inventory[i][0]))    
+        }
+        return inventory
+    }
+
+    tokensWihtAmountOfCoins = numberOfCoins(tokensWithNumbers)
+    
+
     var cashBack = [];
     
     /*if (change > totalCashAmount) {
@@ -66,23 +78,23 @@ function checkCashRegister(price, cash, cid) {
     else */ 
     
     if (change === totalCashAmount) {
-        for (let i = 0; i < tokensWithNumbers.length; i++) {
-            tokensWithNumbers[i].shift();
-            tokensWithNumbers[i].pop();
+        for (let i = 0; i < tokensWihtAmountOfCoins.length; i++) {
+            tokensWihtAmountOfCoins[i].shift();
+            tokensWihtAmountOfCoins[i].pop();
         }
-        return { status: "CLOSED", change: tokensWithNumbers }
+        return { status: "CLOSED", change: tokensWihtAmountOfCoins }
     } 
     else {
-        for (let i = tokensWithNumbers.length - 1; i >= 0; i--) {
-            while (tokensWithNumbers[i][3] > 0 && change >= tokensWithNumbers[i][0]) {
-                change -= tokensWithNumbers[i][0];
-                tokensWithNumbers[i][3]--;
-                sumNumber = tokensWithNumbers[i][2] 
-                substractor = tokensWithNumbers[i][0];
+        for (let i = tokensWihtAmountOfCoins.length - 1; i >= 0; i--) {
+            while (tokensWihtAmountOfCoins[i][3] > 0 && change >= tokensWihtAmountOfCoins[i][0]) {
+                change -= tokensWihtAmountOfCoins[i][0];
+                tokensWihtAmountOfCoins[i][3]--;
+                sumNumber = tokensWihtAmountOfCoins[i][2] 
+                substractor = tokensWihtAmountOfCoins[i][0];
                 sumNumber -= substractor
-                tokensWithNumbers[i][2] = Number(sumNumber.toFixed(2))
+                tokensWihtAmountOfCoins[i][2] = Number(sumNumber.toFixed(2))
                 change = change.toFixed(2);
-                cashBack.push(tokensWithNumbers[i])
+                cashBack.push(tokensWihtAmountOfCoins[i])
             }
         }
     }
@@ -144,7 +156,7 @@ function checkCashRegister(price, cash, cid) {
             receiptSubArr[i].shift()
         }
         
-        let newCid = tokensWithNumbers
+        let newCid = tokensWihtAmountOfCoins;
 
         for (let i in newCid){ 
             newCid[i].shift()
@@ -155,5 +167,5 @@ function checkCashRegister(price, cash, cid) {
         return console.log({ status: "OPEN", change: receiptSubArr, cid })
     }
 
-checkCashRegister(63.75, 120, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
+checkCashRegister(63.50, 120, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
 ["ONE", 5], ["TWO", 6], ["FIVE", 5], ["TEN", 80], ["TWENTY", 60], ["FIFTY", 0], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]])
