@@ -68,7 +68,7 @@ function checkCashRegister(price, cash, cid) {
     }
 
     tokensWithAmountOfCoins = numberOfCoins(tokensWithNumbers)
-    console.log(tokensWithAmountOfCoins);
+    // console.log(tokensWithAmountOfCoins);
     
 
     // Function showAccount counts and shows final results status, change and cid if needed in object. 
@@ -138,7 +138,7 @@ function checkCashRegister(price, cash, cid) {
                 'FIVE CENT': 0
             }
             
-        console.log(cashBack);
+        // console.log(cashBack);
         
         // This loop adds to the appearanceOfTokens object the amount of every token in the cashBack list.
         for (let i = 0; i < cashBack.length; i++) {
@@ -147,8 +147,10 @@ function checkCashRegister(price, cash, cid) {
             }
         }
 
-        console.log(appearanceOfTokens);
+        // console.log(appearanceOfTokens);
         
+        // Receipt list is initated empty.
+        // forEach iterates through cashBack list and adds every tokenname string that appears to the receipt list
         let receipt = [];
         cashBack.forEach((arr) => {
             if (!receipt.includes(arr[1])) {
@@ -156,6 +158,8 @@ function checkCashRegister(price, cash, cid) {
             }
         });
         
+        // This function makse an array with subArrays out of a simple Array
+        // It takes as arguments the Array you want to change and the numer of items in the array, that are packed into one sub array.
         function getSubArrays(arr, subSize) {
             let result = [];
             for (let i = 0; i < arr.length; i += subSize) {
@@ -164,16 +168,30 @@ function checkCashRegister(price, cash, cid) {
             }
             return result
         }
+
+        // In the receiptSubArr variable the receipt list is changed into a array with subArrays of each currency
+        // The number of subSize is set to one.
         let receiptSubArr = getSubArrays(receipt, 1);
         
+        
+        // With use of the updatet appearance of Tokens object this loop adds the amount to return 
+        // to the end of each sub array of the receiptSubArr list
         for (let i = 0; i < receiptSubArr.length; i++) {
             if (receiptSubArr[i] in appearanceOfTokens) {
                 receiptSubArr[i].push(appearanceOfTokens[receiptSubArr[i]])
             }
         }
         
+        
+
+        // By calling the tokensInNumbers function with receiptSubArr as Argument 
+        // the number equivalent to the string name is added to the beginning of each subArray.
         tokensInNumbers(receiptSubArr)
         
+
+        // In this for loop first the string 'Amount of token:' is added to the end of each subArray of receiptSubArr.
+        // Then the actual amount of token is added as a number afer been calculated as a division.
+        // Finally the number equivalent for the token name is removed, after the division is done and ther is no more need for it.
         for (let i = 0; i < receiptSubArr.length; i++) {
             receiptSubArr[i].push('Amount of token: ')
             receiptSubArr[i].push(Math.round(receiptSubArr[i][2] / receiptSubArr[i][0]))
@@ -193,7 +211,7 @@ function checkCashRegister(price, cash, cid) {
 
     }
 var account = showAccount(change, totalCashAmount, tokensWithAmountOfCoins);
-console.log(account)
+return account
 }
 
 checkCashRegister(107.20, 200, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
