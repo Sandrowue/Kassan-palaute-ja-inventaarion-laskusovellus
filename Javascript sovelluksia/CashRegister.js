@@ -185,6 +185,7 @@ function showAccount(change, cashSum, inventory) {
 // checkCashRegister function takes as arguments the price of the bought items,
 // the amount of cash that the customer gives to pay the items
 // and the inventory of cash in the desk (cid).
+// The inventory must be a list with subArrays that include the coin names in capital stringform and the total amount of cash for each coin in number form.
 
 // The function returns the status of the cash register, which is 'OPEN', 'CLOSED' or 'INSUFFICIENT_FUNDS',
 // the change to return to the customer from the cash register
