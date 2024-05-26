@@ -1,8 +1,10 @@
 // HELPER FUNCTIONS OF THE PROGRAM
 
 //  GetChange counts how much cash to return to the customer by subtract the price of the bought items from the received cash.
+// It also converts the result with toFixed to a string with two decimals to prevent floating-point errors.
 function getChange(price, cash) {
-    return cash - price;
+    change = cash - price
+    return change.toFixed(2)
 }
 
 // Adds to cid argument array the value of each coin in numbers at the beginning of each sub array,
@@ -193,8 +195,7 @@ function showAccount(change, cashSum, inventory) {
 function checkCashRegister(price, cash, cid) {
    
     // variable change calls the get change function 
-    // and converts it with toFixed to a string with two decimals to prevent floating-point errors.
-    var change = getChange(price, cash).toFixed(2)
+    var change = getChange(price, cash)
     
     // variable tokensWithNumber calls the tokensInNumbers function with the providen cid argument.
     var tokensWithNumbers = tokensInNumbers(cid)
@@ -212,3 +213,13 @@ function checkCashRegister(price, cash, cid) {
 
 checkCashRegister(122.35, 200, [["FIVE CENT", 0.30], ["TEN CENT", 0.50], ["TWENTY CENT", 0.80], ["FIFTY CENT", 4], 
 ["ONE", 5], ["TWO", 6], ["FIVE", 5], ["TEN", 80], ["TWENTY", 60], ["FIFTY", 0], ["HUNDRED", 0], ["TWO HUNDRED", 0], ["FIVE HUNDRED", 0]])
+
+
+module.exports = {
+    getChange,
+    tokensInNumbers,
+    cashDeskSum,
+    numberOfCoins,
+    getSubArrays,
+    showAccount
+}
