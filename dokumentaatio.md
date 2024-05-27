@@ -16,3 +16,7 @@ Sen jälkeen jatkokehitin sovelluksen niin että se näyttää myös setelien m�
 - Sovelluksen funktiot on automaattitestattu Jest testauskirjaston kanssa. Myös Jestin liäosa on käytetty Visual Studio Codessa.
 
 ## Jatkokehityssuunnitelmat
+- Tällä hetkellä sovellus ei huomioi transaktiossa saatun käteisen määrän uuden inventaarion laatimiseen. Se vain poistaa inventaariosta palautussumman.
+Sitä korjaamiseen sovelluksen pitää muuttaa sillä tavalla, että myös asiakkaan maksun rahasumman pitää eritellä listalla rahayksikköttäin,
+eikä pelkästään syöttää numeroarvolla.
+
