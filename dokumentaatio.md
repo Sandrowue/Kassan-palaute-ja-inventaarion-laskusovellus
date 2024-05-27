@@ -10,3 +10,7 @@ Se palauttaa myös uuden kassan inventarion palautuksen jälkeen. Lisäksi sovel
 Idean tähän sovellukseen sain Freecodecampin JavaScript kurssin loppuharjoituksesta. Siinä vaadittiin vain että sovellus palautta kassan statuksen ja rahamsumman joka yksiköstä
 palautettavaksi. Siihen olen kähittänyt oman ratkaisun minkä palautin Freecodecampin ja sain kurssin sertifikaatin.
 Sen jälkeen jatkokehitin sovelluksen niin että se näyttää myös setelien määrän minkä pitää palauttaa joka yksikön kohdalla ja uuden kassan inventaarion.
+
+## Käytetyt kielet ja kirjastot
+- Sovelluksen koodi toimii Javascriptillä
+- Sovelluksen funktiot on automaattitestattu Jest testauskirjaston kanssa. Myös Jestin liäosa on käytetty Visual Studio Codessa.
