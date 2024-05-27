@@ -20,3 +20,6 @@ Sen jälkeen jatkokehitin sovelluksen niin että se näyttää myös setelien m�
 Sitä korjaamiseen sovelluksen pitää muuttaa sillä tavalla, että myös asiakkaan maksun rahasumman pitää eritellä listalla rahayksikköttäin,
 eikä pelkästään syöttää numeroarvolla.
 
+- Sovelluksesta voisi kehittää 'Svelte Native' ja 'Android Studiolla' puheliinsovellus. Se olisi avuksi jos joutuisi työskentelemään
+  vanhan kassan kanssa missä ei ole digitalisia apuvälineitä. 
+
