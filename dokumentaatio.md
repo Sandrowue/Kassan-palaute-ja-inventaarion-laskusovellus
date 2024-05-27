@@ -7,3 +7,7 @@ saatavilla olevilla rahayksiköillä. Se näyttää myös tarkan kolikko- tai se
 Se palauttaa myös uuden kassan inventarion palautuksen jälkeen. Lisäksi sovellus kertoo kassan statuksen 'OPEN' jos rahaa palautukseen riittää, ja ylimääräistä rahaa jää,
 'CLOSED' jos palautus on juuri saman suuruinen kuin kassan varat tai 'INSUFFICIENT FUNDS', jos kassan varat ei riitä palautukseen.
 
+Idean tähän sovellukseen sain Freecodecampin JavaScript kurssin loppuharjoituksesta. Siinä vaadittiin vain että sovellus palautta kassan statuksen ja rahamsumman joka yksiköstä
+palautettavaksi. Siihen olen kähittänyt oman ratkaisun minkä palautin Freecodecampin ja sain kurssin sertifikaatin.
+
+
